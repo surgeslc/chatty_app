@@ -38,9 +38,13 @@ class App extends Component {
     }, 3000);
   }
 
-  updateData() {
-    console.log("this", this);
-    console.log("ENTER key pressed");
+  updateData(id, username, content) {
+    //console.log("this", this);
+    console.log("Parent updateData: ENTER key pressed");
+    const newMessage = { id: id, username: username, content: content}
+    console.log("New Message is:", newMessage);
+    const messages = this.state.messages.concat(newMessage)
+    this.setState({messages: messages})
   }
 
   render() {
