@@ -21,14 +21,35 @@ class App extends Component {
           }
         ],
       loading: false};
+    this.updateData = this.updateData.bind(this);
+
   }
+
+  componentDidMount() {
+  console.log("componentDidMount <App />");
+  setTimeout(() => {
+    console.log("Simulating incoming message");
+    // Add a new message to the list of messages in the data store
+    const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
+    const messages = this.state.messages.concat(newMessage)
+    // Update the state of the app component.
+    // Calling setState will trigger a call to render() in App and all child components.
+    this.setState({messages: messages})
+    }, 3000);
+  }
+
+  updateData() {
+    console.log("this", this);
+    console.log("ENTER key pressed");
+  }
+
   render() {
-    //console.log("Rendering <App/>");
+    console.log("Rendering <App/>");
     return (
       <div>
         <NavBar />
         <MessageList messages={this.state.messages} />
-        <ChatBar { ...this.state.currentUser } />
+        <ChatBar { ...this.state.currentUser } parentFunction={this.updateData} />
       </div>
     );
   }
