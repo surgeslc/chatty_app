@@ -11,7 +11,7 @@ class ChatBar extends Component {
       if (e.target.value) {
       let newMessage = { id: uuidv4(), username: "Fred", content: e.target.value }
       console.log("ChatBar:", newMessage);
-      return this.props.parentFunction(newMessage.id, newMessage.username, newMessage.content);
+      return this.props.parentFunction( { newMessage } );
 
     } else {
       return;

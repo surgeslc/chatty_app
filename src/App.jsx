@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import ChatBar from "./ChatBar.jsx";
 import MessageList from "./MessageList.jsx";
 import NavBar from "./NavBar.jsx";
+import uuidv4 from 'uuid/v4';
 
 class App extends Component {
   constructor(props) {
@@ -26,8 +27,14 @@ class App extends Component {
   componentDidMount() {
   // Code will be written within comonentDidMount to connect to a WebSockets server
   console.log("componentDidMount <App />");
-  const ws = new WebSocket("ws://localhost:3001");
+  debugger
+  const ws = new WebSocket("ws://localhost:3001/");
   this.socket = ws;
+  debugger
+  this.socket.onopen = () => {
+    debugger
+    this.socket.send("Client connected to server!");
+  };
 
   setTimeout(() => {
     console.log("Simulating incoming message");
@@ -40,10 +47,10 @@ class App extends Component {
     }, 3000);
   }
 
-  updateData(id, username, content) {
+  updateData(newMessage) {
     //console.log("this", this);
     // console.log("Parent updateData: ENTER key pressed");
-    const newMessage = { id: id, username: username, content: content}
+    //const newMessage = { id: id, username: username, content: content}
     console.log("Parent>New Message is:", newMessage);
     const messages = this.state.messages.concat(newMessage)
     this.setState({messages: messages})
