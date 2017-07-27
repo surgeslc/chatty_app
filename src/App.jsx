@@ -4,7 +4,6 @@ import ChatBar from "./ChatBar.jsx";
 import MessageList from "./MessageList.jsx";
 import NavBar from "./NavBar.jsx";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,11 +21,14 @@ class App extends Component {
         ],
       loading: false};
     this.updateData = this.updateData.bind(this);
-
   }
 
   componentDidMount() {
+  // Code will be written within comonentDidMount to connect to a WebSockets server
   console.log("componentDidMount <App />");
+  const ws = new WebSocket("ws://localhost:3001");
+  this.socket = ws;
+
   setTimeout(() => {
     console.log("Simulating incoming message");
     // Add a new message to the list of messages in the data store
@@ -40,9 +42,9 @@ class App extends Component {
 
   updateData(id, username, content) {
     //console.log("this", this);
-    console.log("Parent updateData: ENTER key pressed");
+    // console.log("Parent updateData: ENTER key pressed");
     const newMessage = { id: id, username: username, content: content}
-    console.log("New Message is:", newMessage);
+    console.log("Parent>New Message is:", newMessage);
     const messages = this.state.messages.concat(newMessage)
     this.setState({messages: messages})
   }

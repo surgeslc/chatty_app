@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const uuidv4 = require('uuid/v4');
+import uuidv4 from 'uuid/v4';
 
 class ChatBar extends Component {
 
@@ -8,7 +8,6 @@ class ChatBar extends Component {
     if (e.key === 'Enter') {
       console.log("From ChatBar");
       //console.log("Parent", this.props.parentFunction);
-      //let newMessage = { type: 'chatty', username: this.state.data.currentUser.name, content:e.target.value }
       if (e.target.value) {
       let newMessage = { id: uuidv4(), username: "Fred", content: e.target.value }
       console.log("ChatBar:", newMessage);
