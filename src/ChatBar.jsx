@@ -1,31 +1,6 @@
 import React, {Component} from 'react';
 
-import uuidv4 from 'uuid/v4';
-
 class ChatBar extends Component {
-
-  _handleKeyPress(e){
-    if (e.key === 'Enter') {
-      console.log("From ChatBar");
-      //console.log("Parent", this.props.parentFunction);
-      if (e.target.value) {
-      let newMessage = { id: uuidv4(), username: "Fred", content: e.target.value }
-      console.log("ChatBar:", newMessage);
-      return this.props.parentFunction( { newMessage } );
-
-    } else {
-      return;
-    }
-      // if (newMessage.content.value = "") {
-      //   console.log("No content in message");
-      //   return;
-      // }
-      // if (newMessage.username = "") {
-      //   console.log("Blank field - will use default username Anonymous");
-      //   newMessage.username = "Anonymous";
-      // }
-    }
-  }
 
   render() {
     //debugger
@@ -33,9 +8,9 @@ class ChatBar extends Component {
     return (
       <footer className="chatbar">
         <input className="chatbar-username" placeholder="Your Name (Optional)"
-          defaultValue={ this.props.name } />
+          defaultValue={ this.props.name } onBlur={(e) => this.props.handleUserName(e)} />
         <input className="chatbar-message"
-          placeholder="Type a message and hit ENTER" onKeyPress={(e) => this._handleKeyPress(e)}/>
+          placeholder="Type a message and hit ENTER" onKeyPress={(e) => this.props.updateData(e)}/>
       </footer>
     );
   }
