@@ -41,10 +41,14 @@ class App extends Component {
   }
 
   handleUserName(e){
-    console.log("handleUserName called");
+    //console.log("handleUserName called");
     //console.log("Target class:", e.target.class);
     //console.log("Target name:", e.target.name);
-    this.setState({currentUser: {name: e.target.value}});
+    if (e.target.value != "") {
+      this.setState({currentUser: {name: e.target.value}});
+    } else {
+      this.setState({currentUser: {name: "Anonymous"}});
+    }
     //console.log(this.props.currentUser.name);
   }
 
