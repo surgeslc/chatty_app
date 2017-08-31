@@ -26,7 +26,7 @@ class App extends Component {
     //debugger
     this.socket.onopen = () => {
       //debugger
-      this.socket.send("Client connected to server!");
+      this.socket.send("Client: Connected to server!");
     };
 
   // setTimeout(() => {
